@@ -35,3 +35,7 @@ dirstax[keybind_up]='^[[1;5A'        # Ctrl + UP
 dirstax[keybind_forward]='^[[1;5C'   # Ctrl + RIGHT
 dirstax[keybind_backward]='^[[1;5D'  # Ctrl + LEFT
 ```
+
+## License
+
+[MIT](./LICENSE)
