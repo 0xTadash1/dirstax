@@ -21,7 +21,7 @@ dirstax[_moving]=no
 ##
 cd-up() {
 	zle push-input
-	dirstax[_moving]=1
+	dirstax[_moving]=yes
 	cd ..
 	zle accept-line
 }
@@ -29,7 +29,7 @@ cd-forward() {
 	(( dirstax[backtracks] == 0 )) && return 1
 
 	zle push-input
-	dirstax[_moving]=1
+	dirstax[_moving]=yes
 	if [[ ${options[PUSHD_MINUS]} == 'off' ]]; then
 		pushd -0 >/dev/null 2>&1
 	else
@@ -42,7 +42,7 @@ cd-backward() {
 	(( dirstax[backtracks] == ${#dirstack} )) && return 1
 
 	zle push-input
-	dirstax[_moving]=1
+	dirstax[_moving]=yes
 	if [[ ${options[PUSHD_MINUS]} == 'off' ]]; then
 		pushd +1 >/dev/null 2>&1
 	else
@@ -60,7 +60,7 @@ zle -N cd-backward
 # Hook
 ##
 drop-dirstack-forward-history-on-chpwd() {
-	if [[ -n ${dirstax[_moving]} ]]; then
+	if [[ "${dirstax[_moving]}" == 'yes' ]]; then
 		dirstax[_moving]=no
 		return 0
 	fi
