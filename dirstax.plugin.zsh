@@ -31,9 +31,9 @@ cd-forward() {
 	zle push-input
 	dirstax[_moving]=1
 	if [[ ${options[PUSHD_MINUS]} == 'off' ]]; then
-		pushd -0
+		pushd -0 >/dev/null 2>&1
 	else
-		pushd +0
+		pushd +0 >/dev/null 2>&1
 	fi
 	dirstax[backtracks]=$(( dirstax[backtracks] - 1 ))
 	zle accept-line
@@ -44,9 +44,9 @@ cd-backward() {
 	zle push-input
 	dirstax[_moving]=1
 	if [[ ${options[PUSHD_MINUS]} == 'off' ]]; then
-		pushd +1
+		pushd +1 >/dev/null 2>&1
 	else
-		pushd -1
+		pushd -1 >/dev/null 2>&1
 	fi
 	dirstax[backtracks]=$(( dirstax[backtracks] + 1 ))
 	zle accept-line
