@@ -7,7 +7,7 @@
 - <kbd>alt</kbd>+<kbd>↑</kbd> to go upward to the parent directory
 
 > [!TIP]
-> In macOS, <kbd>option</kbd> is assigned instead of <kbd>alt</kbd>.
+> In macOS, <kbd>⌥ option</kbd> is assigned instead of <kbd>alt</kbd>.
 
 ## Usage 🚧
 
@@ -34,11 +34,11 @@ The key bindings of dirstax can be changed as follows.
 Please note that the environment variables should be set before loading `dirstax.plugin.zsh`.
 
 ```sh
-# Use Shift+Alt as the modifier key instead of Alt (or Option in macOS)
+# Use shift+alt as the modifier key instead of alt (or ⌥ option in macOS)
 typeset -Ax dirstax
-dirstax[keybind_up]='^[[1;4A'        # Shift + Alt + UP
-dirstax[keybind_forward]='^[[1;4C'   # Shift + Alt + RIGHT
-dirstax[keybind_backward]='^[[1;4D'  # Shift + Alt + LEFT
+dirstax[keybind_up]='^[[1;4A'        # shift + alt + ↑
+dirstax[keybind_forward]='^[[1;4C'   # shift + alt + →
+dirstax[keybind_backward]='^[[1;4D'  # shift + alt + ←
 ```
 
 ## License
