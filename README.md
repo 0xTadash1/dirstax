@@ -39,17 +39,16 @@ zinit wait lucid light-mode for @0xTadash1/dirstax
 
 ### Settings
 
-When using Zsh with Emacs bindings, the default settings for dirstax may be cumbersome.
 The key bindings of dirstax can be changed as follows.
 
 Please note that the environment variables should be set before loading `dirstax.plugin.zsh`.
 
 ```sh
-# Use shift+alt as the modifier key instead of alt (or ⌥ option in macOS)
+# Use alt (or ⌥ option in macOS) as the modifier key instead of alt+shift
 typeset -Ax dirstax
-dirstax[keybind_up]='^[[1;4A'        # shift + alt + ↑
-dirstax[keybind_forward]='^[[1;4C'   # shift + alt + →
-dirstax[keybind_backward]='^[[1;4D'  # shift + alt + ←
+dirstax[keybind_up]='^[[1;3A'        # alt + ↑
+dirstax[keybind_forward]='^[[1;3C'   # alt + →
+dirstax[keybind_backward]='^[[1;3D'  # alt + ←
 ```
 
 ## License
