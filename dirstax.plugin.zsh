@@ -10,16 +10,16 @@ setopt AUTO_PUSHD
 ##
 typeset -Ax dirstax
 dirstax[backtracks]=0
-: ${dirstax[keybind_up]:='^[[1;3A'}        # Alt + UP
-: ${dirstax[keybind_forward]:='^[[1;3C'}   # Alt + RIGHT
-: ${dirstax[keybind_backward]:='^[[1;3D'}  # Alt + LEFT
+: ${dirstax[keybind_upward]:='^[[1;4A'}        # shift + alt + ↑
+: ${dirstax[keybind_forward]:='^[[1;4C'}   # shift + alt + →
+: ${dirstax[keybind_backward]:='^[[1;4D'}  # shift + alt + ←
 # for internal
 dirstax[_moving]=no
 
 ###
 # Main Widgets
 ##
-cd-up() {
+cd-upward() {
 	zle push-input
 	dirstax[_moving]=yes
 	cd ..
@@ -52,13 +52,15 @@ cd-backward() {
 	zle accept-line
 }
 # register new widgets
-zle -N cd-up
+zle -N cd-upward
 zle -N cd-forward
 zle -N cd-backward
 
 ###
 # Hook
 ##
+autoload -Uz add-zsh-hook
+
 drop-dirstack-forward-history-on-chpwd() {
 	if [[ "${dirstax[_moving]}" == 'yes' ]]; then
 		dirstax[_moving]=no
@@ -76,6 +78,6 @@ add-zsh-hook chpwd drop-dirstack-forward-history-on-chpwd
 ###
 # Bindkey
 ##
-bindkey "${dirstax[keybind_up]}" cd-up
+bindkey "${dirstax[keybind_upward]}" cd-upward
 bindkey "${dirstax[keybind_forward]}" cd-forward
 bindkey "${dirstax[keybind_backward]}" cd-backward
