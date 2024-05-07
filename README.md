@@ -1,10 +1,10 @@
 # dirstax
 
-**It provides simple and practical directory navigation, such as browser history, using the built-in `$dirstack` feature of Zsh.**
+**Provides simple and practical directory navigation, such as browser history**, using the built-in `$dirstack` feature of Zsh.
 
 - <kbd>alt</kbd>+<kbd>←</kbd> to go back to the previous directory
-- <kbd>alt</kbd>+<kbd>→</kbd> to go forward
-- <kbd>alt</kbd>+<kbd>↑</kbd> to go to the parent directory
+- <kbd>alt</kbd>+<kbd>→</kbd> to go forward in the directory history
+- <kbd>alt</kbd>+<kbd>↑</kbd> to go upward to the parent directory
 
 ## Usage 🚧
 
@@ -13,7 +13,7 @@ Out of the Box. The default key bindings are activated immediately after the scr
 > [!NOTE]
 >
 > This plugin utilizes `$dirstack`, a built-in feature of Zsh.
-> Therefore, it internally executes `setopt AUTO_PUSHD`. (In zsh, this option is off by default.)
+> Therefore, it internally executes `setopt AUTO_PUSHD`. (This Zsh option is off by default.)
 >
 > `AUTO_PUSHD` is:
 >
@@ -21,7 +21,7 @@ Out of the Box. The default key bindings are activated immediately after the scr
 > >
 > > -- [zsh: 16 Options #Changing-Directories](https://zsh.sourceforge.io/Doc/Release/Options.html#Changing-Directories)
 >
-> Unless other plugins or features that rely on `$dirstack` are being used, enabling this option *should have no impact*.
+> Enabling this option *should have no impact* unless using `$dirstack`-dependent plugins or features.
 
 ## Settings
 
