@@ -28,7 +28,9 @@ Out of the Box. The default key bindings are activated immediately after the scr
 
 ## Settings
 
-The key bindings can be changed as shown in this example.
+When using Zsh with Emacs bindings, the default settings for dirstax may be cumbersome.
+The key bindings of dirstax can be changed as follows.
+
 Please note that the environment variables should be set before loading `dirstax.plugin.zsh`.
 
 ```sh
