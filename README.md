@@ -6,6 +6,9 @@
 - <kbd>alt</kbd>+<kbd>→</kbd> to go forward in the directory history
 - <kbd>alt</kbd>+<kbd>↑</kbd> to go upward to the parent directory
 
+> [!TIP]
+> In macOS, <kbd>option</kbd> is assigned instead of <kbd>alt</kbd>.
+
 ## Usage 🚧
 
 Out of the Box. The default key bindings are activated immediately after the script is sourced.
