@@ -2,31 +2,42 @@
 
 **Provides simple and practical directory navigation, such as browser history**, using the built-in `$dirstack` feature of Zsh.
 
-- <kbd>alt</kbd>+<kbd>←</kbd> to go back to the previous directory
-- <kbd>alt</kbd>+<kbd>→</kbd> to go forward in the directory history
-- <kbd>alt</kbd>+<kbd>↑</kbd> to go upward to the parent directory
+- <kbd>alt</kbd>+<kbd>←</kbd> to go backwads to the previous directory
+- <kbd>alt</kbd>+<kbd>→</kbd> to go forwards in the directory history
+- <kbd>alt</kbd>+<kbd>↑</kbd> to go upwards to the parent directory
 
 > [!TIP]
 > In macOS, <kbd>⌥ option</kbd> is assigned instead of <kbd>alt</kbd>.
 
-## Usage 🚧
-
-Out of the Box. The default key bindings are activated immediately after the script is sourced.
-
 > [!NOTE]
 >
-> This plugin utilizes `$dirstack`, a built-in feature of Zsh.
-> Therefore, it internally executes `setopt AUTO_PUSHD`. (This Zsh option is off by default.)
->
-> `AUTO_PUSHD` is:
->
-> > Make cd push the old directory onto the directory stack.
-> >
-> > -- [zsh: 16 Options #Changing-Directories](https://zsh.sourceforge.io/Doc/Release/Options.html#Changing-Directories)
+> Designed to utilize Zsh’s built-in $dirstack, this plugin turns on
+> [`AUTO_PUSHD`](https://zsh.sourceforge.io/Doc/Release/Options.html#Changing-Directories) internally.
+> (This Zsh option is off by default)
 >
 > Enabling this option *should have no impact* unless using `$dirstack`-dependent plugins or features.
 
-## Settings
+## Usage
+
+dirstax works out of the box. The default key bindings are activated immediately after the script is sourced.
+
+### Installation
+
+`git clone https://github.com/0xTadash1/dirstax`, and Edit `.zshrc`:
+
+```sh
+source path/to/dirstax.plugin.zsh
+```
+
+#### with zinit
+
+Install with Zsh plugin manager [zinit](https://github.com/zdharma-continuum/zinit):
+
+```sh
+zinit wait lucid light-mode for @0xTadash1/dirstax
+```
+
+### Settings
 
 When using Zsh with Emacs bindings, the default settings for dirstax may be cumbersome.
 The key bindings of dirstax can be changed as follows.
