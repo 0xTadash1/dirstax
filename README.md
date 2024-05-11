@@ -2,9 +2,9 @@
 
 **Provides simple and practical directory navigation, such as browser history**, using the built-in `$dirstack` feature of Zsh.
 
-- <kbd>alt</kbd>+<kbd>←</kbd> to go backwads to the previous directory
-- <kbd>alt</kbd>+<kbd>→</kbd> to go forwards in the directory history
-- <kbd>alt</kbd>+<kbd>↑</kbd> to go upwards to the parent directory
+- <kbd>shift</kbd>+<kbd>alt</kbd>+<kbd>←</kbd> to go backwads to the previous directory
+- <kbd>shift</kbd>+<kbd>alt</kbd>+<kbd>→</kbd> to go forwards in the directory history
+- <kbd>shift</kbd>+<kbd>alt</kbd>+<kbd>↑</kbd> to go upwards to the parent directory
 
 > [!TIP]
 > In macOS, <kbd>⌥ option</kbd> is assigned instead of <kbd>alt</kbd>.
@@ -46,7 +46,7 @@ Please note that the environment variables should be set before loading `dirstax
 ```sh
 # Use alt (or ⌥ option in macOS) as the modifier key instead of alt+shift
 typeset -Ax dirstax
-dirstax[keybind_up]='^[[1;3A'        # alt + ↑
+dirstax[keybind_upward]='^[[1;3A'    # alt + ↑
 dirstax[keybind_forward]='^[[1;3C'   # alt + →
 dirstax[keybind_backward]='^[[1;3D'  # alt + ←
 ```
