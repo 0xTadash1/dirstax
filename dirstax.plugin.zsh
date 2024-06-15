@@ -19,13 +19,13 @@ dirstax[_moving]=no
 ###
 # Main Widgets
 ##
-cd-upward() {
+dirstax-cd-upward() {
 	zle push-input
 	dirstax[_moving]=yes
 	cd ..
 	zle accept-line
 }
-cd-forward() {
+dirstax-cd-forward() {
 	(( dirstax[_backtracks] == 0 )) && return 1
 
 	zle push-input
@@ -38,7 +38,7 @@ cd-forward() {
 	dirstax[_backtracks]=$(( dirstax[_backtracks] - 1 ))
 	zle accept-line
 }
-cd-backward() {
+dirstax-cd-backward() {
 	(( dirstax[_backtracks] == ${#dirstack} )) && return 1
 
 	zle push-input
@@ -52,16 +52,16 @@ cd-backward() {
 	zle accept-line
 }
 # register new widgets
-zle -N cd-upward
-zle -N cd-forward
-zle -N cd-backward
+zle -N dirstax-cd-upward
+zle -N dirstax-cd-forward
+zle -N dirstax-cd-backward
 
 ###
 # Hook
 ##
 autoload -Uz add-zsh-hook
 
-drop-dirstack-forward-history-on-chpwd() {
+dirstax-drop-dirstack-forward-history-on-chpwd() {
 	if [[ "${dirstax[_moving]}" == 'yes' ]]; then
 		dirstax[_moving]=no
 		return 0
@@ -73,11 +73,11 @@ drop-dirstack-forward-history-on-chpwd() {
 }
 
 # register hook
-add-zsh-hook chpwd drop-dirstack-forward-history-on-chpwd
+add-zsh-hook chpwd dirstax-drop-dirstack-forward-history-on-chpwd
 
 ###
 # Bindkey
 ##
-bindkey "${dirstax[keybind_upward]}" cd-upward
-bindkey "${dirstax[keybind_forward]}" cd-forward
-bindkey "${dirstax[keybind_backward]}" cd-backward
+bindkey "${dirstax[keybind_upward]}" dirstax-cd-upward
+bindkey "${dirstax[keybind_forward]}" dirstax-cd-forward
+bindkey "${dirstax[keybind_backward]}" dirstax-cd-backward
