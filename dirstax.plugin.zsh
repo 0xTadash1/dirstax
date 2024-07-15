@@ -18,9 +18,15 @@
 	# Don't initialize with `=()` to avoid overriding user-defined key bindings
 	typeset -Ax dirstax
 
-	: ${dirstax[keybind_upward]:='^[[1;4A'}    # shift + alt + ↑
-	: ${dirstax[keybind_forward]:='^[[1;4C'}   # shift + alt + →
-	: ${dirstax[keybind_backward]:='^[[1;4D'}  # shift + alt + ←
+	if [[ "$(uname -s)" == 'Darwin' ]]; then
+		: ${dirstax[keybind_upward]:='^[[1;9A'}    # ⌘ + ↑
+		: ${dirstax[keybind_forward]:='^[[1;9C'}   # ⌘ + →
+		: ${dirstax[keybind_backward]:='^[[1;9D'}  # ⌘ + ←
+	else
+		: ${dirstax[keybind_upward]:='^[[1;4A'}    # shift + alt + ↑
+		: ${dirstax[keybind_forward]:='^[[1;4C'}   # shift + alt + →
+		: ${dirstax[keybind_backward]:='^[[1;4D'}  # shift + alt + ←
+	fi
 
 	# for internal
 	dirstax[_backtracks]='0'
