@@ -2,16 +2,16 @@
 
 **Provides simple and practical directory navigation, such as browser history**, using the built-in `$dirstack` feature of Zsh.
 
-- <kbd>shift</kbd>+<kbd>alt</kbd>+<kbd>←</kbd> to go backwads to the previous directory
-- <kbd>shift</kbd>+<kbd>alt</kbd>+<kbd>→</kbd> to go forwards in the directory history
-- <kbd>shift</kbd>+<kbd>alt</kbd>+<kbd>↑</kbd> to go upwards to the parent directory
+- <kbd>alt</kbd>+<kbd>←</kbd> to go backwads to the previous directory
+- <kbd>alt</kbd>+<kbd>→</kbd> to go forwards in the directory history
+- <kbd>alt</kbd>+<kbd>↑</kbd> to go upwards to the parent directory
 
 > [!TIP]
-> In macOS, <kbd>⌥ option</kbd> is assigned instead of <kbd>alt</kbd>.
+> In macOS, <kbd>⌘ command</kbd> is assigned instead of <kbd>alt</kbd>.
 
 > [!NOTE]
 >
-> Designed to utilize Zsh’s built-in $dirstack, this plugin turns on
+> Designed to utilize Zsh’s built-in `$dirstack`, this plugin turns on
 > [`AUTO_PUSHD`](https://zsh.sourceforge.io/Doc/Release/Options.html#Changing-Directories) internally.
 > (This Zsh option is off by default)
 >
@@ -41,14 +41,19 @@ zinit wait lucid light-mode for @0xTadash1/dirstax
 
 The key bindings of dirstax can be changed as follows.
 
-Please note that the environment variables should be set before loading `dirstax.plugin.zsh`.
+```sh
+# Use shift + alt (or shift + ⌥ option in macOS) as the modifier key instead of the default
+typeset -Ax dirstax=(
+	[keybind_upward]='^[[1;4A'    # shift + alt + ↑
+	[keybind_forward]='^[[1;4C'   # shift + alt + →
+	[keybind_backward]='^[[1;4D'  # shift + alt + ←
+)
+```
+
+If after loading the plugin, you need to reapply the key bindings.
 
 ```sh
-# Use alt (or ⌥ option in macOS) as the modifier key instead of alt+shift
-typeset -Ax dirstax
-dirstax[keybind_upward]='^[[1;3A'    # alt + ↑
-dirstax[keybind_forward]='^[[1;3C'   # alt + →
-dirstax[keybind_backward]='^[[1;3D'  # alt + ←
+.dirstax.bind_widgets
 ```
 
 ## License
