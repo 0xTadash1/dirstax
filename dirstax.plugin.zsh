@@ -23,9 +23,9 @@
 		: ${dirstax[keybind_forward]:='^[[1;9C'}   # ⌘ + →
 		: ${dirstax[keybind_backward]:='^[[1;9D'}  # ⌘ + ←
 	else
-		: ${dirstax[keybind_upward]:='^[[1;4A'}    # shift + alt + ↑
-		: ${dirstax[keybind_forward]:='^[[1;4C'}   # shift + alt + →
-		: ${dirstax[keybind_backward]:='^[[1;4D'}  # shift + alt + ←
+		: ${dirstax[keybind_upward]:='^[[1;3A'}    # alt + ↑
+		: ${dirstax[keybind_forward]:='^[[1;3C'}   # alt + →
+		: ${dirstax[keybind_backward]:='^[[1;3D'}  # alt + ←
 	fi
 
 	# for internal
