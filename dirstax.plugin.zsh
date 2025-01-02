@@ -35,7 +35,7 @@
 
 .dirstax.setup_widgets() {
 	dirstax-cd-upward() {
-		zle push-input
+		zle push-line-or-edit
 		dirstax[_moving]='yes'
 		cd ..
 		zle accept-line
@@ -43,7 +43,7 @@
 	dirstax-cd-forward() {
 		(( dirstax[_backtracks] == 0 )) && return 1
 
-		zle push-input
+		zle push-line-or-edit
 		dirstax[_moving]='yes'
 		if [[ ${options[PUSHD_MINUS]} == 'off' ]]; then
 			pushd -0 >/dev/null 2>&1
@@ -56,7 +56,7 @@
 	dirstax-cd-backward() {
 		(( dirstax[_backtracks] == ${#dirstack} )) && return 1
 
-		zle push-input
+		zle push-line-or-edit
 		dirstax[_moving]='yes'
 		if [[ ${options[PUSHD_MINUS]} == 'off' ]]; then
 			pushd +1 >/dev/null 2>&1
