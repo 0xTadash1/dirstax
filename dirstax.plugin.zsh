@@ -36,7 +36,7 @@
 .dirstax.setup_widgets() {
 	dirstax-cd-upward() {
 		zle push-line-or-edit
-		dirstax[_status]='upward'
+		dirstax[_status]='cd-upward'
 		cd ..
 		zle accept-line
 	}
@@ -44,7 +44,7 @@
 		(( dirstax[_backtracks] == 0 )) && return 1
 
 		zle push-line-or-edit
-		dirstax[_status]='forward'
+		dirstax[_status]='cd-forward'
 		if [[ ${options[PUSHD_MINUS]} == 'off' ]]; then
 			pushd -0 >/dev/null 2>&1
 		else
@@ -57,7 +57,7 @@
 		(( dirstax[_backtracks] == ${#dirstack} )) && return 1
 
 		zle push-line-or-edit
-		dirstax[_status]='backward'
+		dirstax[_status]='cd-backward'
 		if [[ ${options[PUSHD_MINUS]} == 'off' ]]; then
 			pushd +1 >/dev/null 2>&1
 		else
@@ -83,11 +83,12 @@
 	autoload -Uz add-zsh-hook
 
 	dirstax-drop-dirstack-forward-history() {
-		if [[ "${dirstax[_status]}" == 'idle' || "${dirstax[_status]}" == 'upward' ]]; then
-			if [[ ${dirstax[_backtracks]} != 0 ]]; then
+		if [[ "${dirstax[_status]}" == 'idle' || "${dirstax[_status]}" == 'cd-upward' ]]; then
+			if [[ ${dirstax[_backtracks]} > 0 ]]; then
+				: ${dirstack[@]}
 				dirstack=("${dirstack[@]:: -${dirstax[_backtracks]}}")
-				dirstax[_backtracks]='0'
 			fi
+			dirstax[_backtracks]='0'
 		fi
 		dirstax[_status]='idle'
 	}
