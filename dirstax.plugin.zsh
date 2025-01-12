@@ -12,6 +12,7 @@
 
 .dirstax.prerequisites() {
 	setopt AUTO_PUSHD
+	setopt NO_PUSHD_IGNORE_DUPS
 }
 
 .dirstax.settings() {
@@ -30,13 +31,14 @@
 
 	# for internal
 	dirstax[_backtracks]='0'
-	dirstax[_moving]='no'
+	dirstax[_status]='idle'
 }
 
 .dirstax.setup_widgets() {
 	dirstax-cd-upward() {
 		zle push-line-or-edit
-		dirstax[_moving]='yes'
+		dirstax[_status]='cd-upward'
+		# `pushd -q` does not trigger the `chpwd` hook
 		cd ..
 		zle accept-line
 	}
@@ -44,26 +46,24 @@
 		(( dirstax[_backtracks] == 0 )) && return 1
 
 		zle push-line-or-edit
-		dirstax[_moving]='yes'
+		dirstax[_status]='cd-forward'
 		if [[ ${options[PUSHD_MINUS]} == 'off' ]]; then
 			pushd -0 >/dev/null 2>&1
 		else
 			pushd +0 >/dev/null 2>&1
 		fi
-		dirstax[_backtracks]=$(( dirstax[_backtracks] - 1 ))
 		zle accept-line
 	}
 	dirstax-cd-backward() {
 		(( dirstax[_backtracks] == ${#dirstack} )) && return 1
 
 		zle push-line-or-edit
-		dirstax[_moving]='yes'
+		dirstax[_status]='cd-backward'
 		if [[ ${options[PUSHD_MINUS]} == 'off' ]]; then
 			pushd +1 >/dev/null 2>&1
 		else
 			pushd -1 >/dev/null 2>&1
 		fi
-		dirstax[_backtracks]=$(( dirstax[_backtracks] + 1 ))
 		zle accept-line
 	}
 
@@ -83,14 +83,23 @@
 	autoload -Uz add-zsh-hook
 
 	dirstax-drop-dirstack-forward-history() {
-		if [[ "${dirstax[_moving]}" == 'yes' ]]; then
-			dirstax[_moving]='no'
-			return 0
-		fi
-		if (( dirstax[_backtracks] != 0 )); then
-			dirstack=("${dirstack[@]:: -${dirstax[_backtracks]}}")
-			dirstax[_backtracks]='0'
-		fi
+		case "${dirstax[_status]}" in
+			cd-backward)
+				(( dirstax[_backtracks]++ )) ;;
+			cd-forward)
+				(( dirstax[_backtracks]-- )) ;;
+			idle|cd-upward)
+				if (( ${dirstax[_backtracks]} > 0 )); then
+					dirstack=("${dirstack[@]:: -${dirstax[_backtracks]}}")
+				fi
+				dirstax[_backtracks]='0'
+				;;
+			*)
+				print >/dev/stderr 'dirstax:' \
+					'`${dirstax[_status]}` must be `idle`, `cd-upward`, `cd-backward` or `cd-forward`.'
+				;;
+		esac
+		dirstax[_status]='idle'
 	}
 
 	# register hook
