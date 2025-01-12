@@ -11,12 +11,12 @@
 
 > [!NOTE]
 >
-> Designed to utilize Zsh’s built-in `$dirstack`, this plugin turns on
+> Designed to utilize Zsh’s built-in `$dirstack`, this plugin enables
 > [`AUTO_PUSHD`](https://zsh.sourceforge.io/Doc/Release/Options.html#Changing-Directories)
-> and off [`PUSHD_IGNORE_DUPS`](https://zsh.sourceforge.io/Doc/Release/Options.html#Changing-Directories) internally.
-> (These Zsh option are off by default)
+> and disables [`PUSHD_IGNORE_DUPS`](https://zsh.sourceforge.io/Doc/Release/Options.html#Changing-Directories) internally.
+> (These Zsh options are disabled by default)
 >
-> This changes *should have no impact* unless using `$dirstack`-dependent plugins or features.
+> These changes *should not have any effect* unless you are using plugins or features that depend on `$dirstack`.
 
 ## Usage
 
